@@ -1,4 +1,6 @@
 #include "Toolbar.h"
+#include "Enums.h"
+#include <bobcat_ui/bobcat_ui.h>
 using namespace bobcat;
 
 void Toolbar::deselectAllTools() {
@@ -9,6 +11,8 @@ void Toolbar::deselectAllTools() {
     rectangleButton->color(FL_BACKGROUND_COLOR);
     polygonButton->color(FL_BACKGROUND_COLOR);
     mouseButton->color(FL_BACKGROUND_COLOR);
+    plusButton->color(FL_BACKGROUND_COLOR);
+    minusButton->color(FL_BACKGROUND_COLOR);
 }
 
 void Toolbar::visualizeSelectedTool() {
@@ -32,6 +36,12 @@ void Toolbar::visualizeSelectedTool() {
     }
     else if (tool == MOUSE) {
         mouseButton->color(FL_WHITE);
+    }
+    else if (tool == PLUS) {
+        plusButton->color(FL_WHITE);
+    }
+    else if (tool == MINUS) {
+        minusButton->color(FL_WHITE);
     }
 }
 
@@ -64,6 +74,12 @@ void Toolbar::onClick(bobcat::Widget* sender) {
     else if (sender == mouseButton) {
         tool = MOUSE;
     }
+    else if (sender == plusButton) {
+        tool = PLUS;
+    }
+    else if (sender == minusButton) {
+        tool = MINUS;
+    }
 
     if (onChangeCb) {
         onChangeCb(this);
@@ -90,6 +106,10 @@ Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
     polygonButton = new Image(x, y + 250, 50, 50, "./assets/polygon.png");
     clearButton = new Image(x, y + 300, 50, 50, "./assets/clear.png");
     mouseButton = new Image(x, y + 350, 50, 50, "./assets/mouse.png");
+    plusButton = new Image(x, y + 400, 50, 50, "./assets/plus.png");
+    minusButton = new Image(x, y + 450, 50, 50, "./assets/minus.png");
+    
+    
 
     tool = PENCIL;
     action = NONE;
@@ -102,6 +122,8 @@ Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
     polygonButton->box(FL_BORDER_BOX);
     clearButton->box(FL_BORDER_BOX);
     mouseButton->box(FL_BORDER_BOX);
+    plusButton->box(FL_BORDER_BOX);
+    minusButton->box(FL_BORDER_BOX);
 
     visualizeSelectedTool();
 
@@ -113,4 +135,6 @@ Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
     ON_CLICK(polygonButton, Toolbar::onClick);
     ON_CLICK(clearButton, Toolbar::onClick);
     ON_CLICK(mouseButton, Toolbar::onClick);
+    ON_CLICK(plusButton, Toolbar::onClick);
+    ON_CLICK(minusButton, Toolbar::onClick);
 }

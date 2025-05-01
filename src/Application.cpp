@@ -74,7 +74,7 @@ void Application::onColorSelectorChange(bobcat::Widget* sender) {
 }
 
 Application::Application() {
-    window = new Window(25, 75, 400, 400, "Lecture 21");
+    window = new Window(25, 75, 400, 500, "Paint App");
 
     selectedShape = nullptr;
 
