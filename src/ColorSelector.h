@@ -20,6 +20,7 @@ class ColorSelector : public bobcat::Group {
     void onClick(bobcat::Widget* sender);
 
 public:
+
     ColorSelector(int x, int y, int w, int h);
 
     Color getColor() const;

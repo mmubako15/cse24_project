@@ -98,16 +98,17 @@ ACTION Toolbar::getAction() const {
 }
 
 Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
-    pencilButton = new Image(x, y, 50, 50, "./assets/pencil.png");
-    eraserButton = new Image(x, y + 50, 50, 50, "./assets/eraser.png");
-    circleButton = new Image(x, y + 100, 50, 50, "./assets/circle.png");
-    triangleButton = new Image(x, y + 150, 50, 50, "./assets/triangle.png");
-    rectangleButton = new Image(x, y + 200, 50, 50, "./assets/rectangle.png");
-    polygonButton = new Image(x, y + 250, 50, 50, "./assets/polygon.png");
-    clearButton = new Image(x, y + 300, 50, 50, "./assets/clear.png");
-    mouseButton = new Image(x, y + 350, 50, 50, "./assets/mouse.png");
-    plusButton = new Image(x, y + 400, 50, 50, "./assets/plus.png");
-    minusButton = new Image(x, y + 450, 50, 50, "./assets/minus.png");
+    int baseY = 50;
+    pencilButton = new Image(x, baseY-50, 50, 50, "./assets/pencil.png");
+    eraserButton = new Image(x, baseY , 50, 50, "./assets/eraser.png");
+    circleButton = new Image(x, baseY + 50, 50, 50, "./assets/circle.png");
+    triangleButton = new Image(x, baseY + 100, 50, 50, "./assets/triangle.png");
+    rectangleButton = new Image(x, baseY + 150, 50, 50, "./assets/rectangle.png");
+    polygonButton = new Image(x, baseY + 200, 50, 50, "./assets/polygon.png");
+    clearButton = new Image(x, baseY + 250, 50, 50, "./assets/clear.png");
+    mouseButton = new Image(x, baseY + 300, 50, 50, "./assets/mouse.png");
+    plusButton = new Image(x, baseY + 350, 50, 50, "./assets/plus.png");
+    minusButton = new Image(x, baseY + 400, 50, 50, "./assets/minus.png");
     
     
 

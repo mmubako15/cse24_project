@@ -32,6 +32,10 @@ void Application::onCanvasMouseDown(bobcat::Widget* sender, float mx, float my) 
         canvas->addPolygon(mx, my, color.getR(), color.getG(), color.getB());
         canvas->redraw();
     }
+    // If tool is plus
+    else if(tool == PLUS){
+        
+    }
    
 
     else if (tool == MOUSE) {
@@ -71,6 +75,12 @@ void Application::onColorSelectorChange(bobcat::Widget* sender) {
         selectedShape->setColor(color.getR(), color.getG(), color.getB());
         canvas->redraw();
     }
+
+    /*
+    When shape is selected if minus is pressed then subtract shapes size by 10 percent 
+    if + plus is hit then increase shapes size by 10%
+    */
+
 }
 
 Application::Application() {
@@ -78,9 +88,15 @@ Application::Application() {
 
     selectedShape = nullptr;
 
-    toolbar = new Toolbar(0, 0, 50, 400);
-    canvas = new Canvas(50, 0, 350, 350);
-    colorSelector = new ColorSelector(50, 350, 350, 50);
+    toolbar = new Toolbar(0, 0, 50, 500);
+    canvas = new Canvas(50, 0, 350, 450);
+    // Defining variables to repersent parameters for ColorSelector
+    int height, width, x, y;
+    x = 50;
+    y = 450;
+    width = 350;
+    height = 550;
+    colorSelector = new ColorSelector(x, y, width, height);
     colorSelector->box(FL_BORDER_BOX);
 
     window->add(toolbar);
@@ -94,3 +110,6 @@ Application::Application() {
 
     window->show();
 }
+/*
+Change window size to big to find color selector.
+*/
