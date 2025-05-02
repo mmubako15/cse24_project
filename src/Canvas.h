@@ -29,6 +29,10 @@ public:
 
     void render();
 
+    // For future reference when passing Shape* the function is expecting a pointer to a shape object not the object itself
+    void bringToFront(Shape* shape);
+    void bringToBack(Shape* shape);
+
     Shape* getSelectedShape(float mx, float my);
 };
 

@@ -54,9 +54,21 @@ void Application::onCanvasMouseDown(bobcat::Widget* sender, float mx, float my) 
         else {
             cout << "No shape under cursor for -"; //Debug Statement
         }
-    }
-   
 
+    }
+    else if (tool == SEND_TO_FRONT){
+        if(selectedShape){
+            canvas->bringToFront(selectedShape);
+            canvas->redraw();
+        }
+    }
+    
+    else if (tool == SEND_TO_BACK){
+        if(selectedShape){
+            canvas->bringToBack(selectedShape);
+            canvas->redraw();
+        }
+    }
     else if (tool == MOUSE) {
         selectedShape = canvas->getSelectedShape(mx, my);
     }

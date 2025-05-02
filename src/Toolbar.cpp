@@ -1,5 +1,6 @@
 #include "Toolbar.h"
 #include "Enums.h"
+#include <FL/Enumerations.H>
 #include <bobcat_ui/bobcat_ui.h>
 using namespace bobcat;
 
@@ -13,6 +14,9 @@ void Toolbar::deselectAllTools() {
     mouseButton->color(FL_BACKGROUND_COLOR);
     plusButton->color(FL_BACKGROUND_COLOR);
     minusButton->color(FL_BACKGROUND_COLOR);
+    sendtoFrontButton->color(FL_BACKGROUND_COLOR);
+    sendtoBackButton->color(FL_BACKGROUND_COLOR);
+
 }
 
 void Toolbar::visualizeSelectedTool() {
@@ -44,10 +48,10 @@ void Toolbar::visualizeSelectedTool() {
         minusButton->color(FL_WHITE);
     }
     else if (tool == SEND_TO_BACK) {
-        sendtobackButton->color(FL_WHITE);
+        sendtoBackButton->color(FL_WHITE);
     }
     else if (tool == SEND_TO_FRONT) {
-        sendtofrontButton->color(FL_WHITE);
+        sendtoFrontButton->color(FL_WHITE);
     }
 }
 
@@ -86,11 +90,11 @@ void Toolbar::onClick(bobcat::Widget* sender) {
     else if (sender == minusButton) {
         tool = MINUS;
     }
-    else if (sender == sendtobackButton) {
-        tool = SEND_TO_BACK;
-    }
-    else if (sender == sendtofrontButton) {
+    else if (sender == sendtoFrontButton) {
         tool = SEND_TO_FRONT;
+    }
+    else if (sender == sendtoBackButton) {
+        tool = SEND_TO_BACK;
     }
 
     if (onChangeCb) {
@@ -121,8 +125,8 @@ Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
     mouseButton = new Image(x, baseY + 300, 50, 50, "./assets/mouse.png");
     plusButton = new Image(x, baseY + 350, 50, 50, "./assets/plus.png");
     minusButton = new Image(x, baseY + 400, 50, 50, "./assets/minus.png");
-    sendtofrontButton = new Image(x, baseY + 450, 50, 50, "./assets/bring-to-front.png");
-    sendtobackButton = new Image(x, baseY + 500, 50, 50, "./assets/send-to-back.png");
+    sendtoFrontButton = new Image(x, baseY + 450, 50, 50, "./assets/bring-to-front.png");
+    sendtoBackButton = new Image(x, baseY + 500, 50, 50, "./assets/send-to-back.png");
     
 
     tool = PENCIL;
@@ -138,8 +142,8 @@ Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
     mouseButton->box(FL_BORDER_BOX);
     plusButton->box(FL_BORDER_BOX);
     minusButton->box(FL_BORDER_BOX);
-    sendtobackButton->box(FL_BORDER_BOX);
-    sendtofrontButton->box(FL_BORDER_BOX);
+    sendtoBackButton->box(FL_BORDER_BOX);
+    sendtoFrontButton->box(FL_BORDER_BOX);
 
 
     visualizeSelectedTool();
@@ -154,6 +158,6 @@ Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
     ON_CLICK(mouseButton, Toolbar::onClick);
     ON_CLICK(plusButton, Toolbar::onClick);
     ON_CLICK(minusButton, Toolbar::onClick);
-    ON_CLICK(sendtobackButton, Toolbar::onClick);
-    ON_CLICK(sendtofrontButton, Toolbar::onClick);
+    ON_CLICK(sendtoBackButton, Toolbar::onClick);
+    ON_CLICK(sendtoFrontButton, Toolbar::onClick);
 }

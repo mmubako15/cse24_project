@@ -27,6 +27,41 @@ void Canvas::addPolygon(float x, float y, float r, float g, float b){
     shapes.push_back(new Polygon( x,  y, r,  g,  b));
     
 }
+void Canvas::bringToFront(Shape *shape){
+    // Last object in vector shapes
+    int index = -1;
+    for(int i = 0; i< shapes.size(); i++){
+        // Once we find the shape we are looking for 
+        if(shapes[i] == shape){
+            index = i;
+            break;
+        }
+    }
+    if(index != -1){
+        Shape* temp = shapes[index];
+        for(int i = index; i < shapes.size() - 1; ++i){
+            shapes[i] = shapes[i+1];
+        }
+        shapes[shapes.size() - 1] = temp;
+    }
+}
+
+void Canvas::bringToBack(Shape *shape){
+    int index = -1;
+    for(int i = 0; i < shapes.size(); i++){
+        if(shapes[i] == shape){
+            index = i;
+            break;
+        }
+    }
+    if(index != -1){
+        Shape* temp = shapes[index];
+        for(int i = index; i > 0; --i){
+            shapes[i] = shapes[i - 1];
+        }
+        shapes[0] = temp;
+    }
+}
 
 void Canvas::clear() {
     for (unsigned int i = 0 ; i < points.size(); i++) {
