@@ -32,8 +32,16 @@ void Triangle::draw(){
         glVertex2f(x + size /2, y - (1.0f / 3.0f)* h);//Bottom Right it is on the Right because Added by size
     glEnd();
 }
+
+void Triangle::scale(float factor){
+    size *= factor;
+}
+
 bool Triangle::contains(float mx, float my){
-    return false;
+    float dx = mx - x;
+    float dy = my - y;
+    float distanceSquared = dx * dx + dy * dy;
+    return distanceSquared <= size * size;
 }
 void Triangle::setColor(float r, float g, float b){
     this->r = r;

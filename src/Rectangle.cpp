@@ -32,6 +32,11 @@ void Rectangle::draw() {
     glEnd();
 }
 
+void Rectangle::scale(float factor){
+    width *= factor;
+    height *= factor;
+}
+
 bool Rectangle::contains(float mx, float my) {
     if (mx >= x - width/2 && mx <= x + width/2 && my <= y + height/2 && my >= y - height/2) {
         return true;

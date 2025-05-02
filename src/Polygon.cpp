@@ -35,8 +35,15 @@ void Polygon::draw(){
     glEnd();
 }   
 
+void Polygon::scale(float factor){
+    size *= factor;
+}
+
 bool Polygon::contains(float mx, float my){
-    return false;
+    float dx = mx -x;
+    float dy = my - y;
+    float distanceSquared =  dx* dx + dy * dy;
+    return distanceSquared <= size*size;
 }
 
 void Polygon::setColor(float r, float g, float b){

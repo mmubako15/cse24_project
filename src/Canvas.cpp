@@ -25,6 +25,7 @@ void Canvas::addTriangle(float x, float y, float r, float g, float b){
 }
 void Canvas::addPolygon(float x, float y, float r, float g, float b){
     shapes.push_back(new Polygon( x,  y, r,  g,  b));
+    
 }
 
 void Canvas::clear() {

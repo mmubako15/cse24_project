@@ -5,7 +5,10 @@ using namespace bobcat;
 using namespace std;
 
 void Application::onCanvasMouseDown(bobcat::Widget* sender, float mx, float my) {
+    cout << "Mouse clicked at: " << mx << ", " << my << endl;
+
     TOOL tool = toolbar->getTool();
+    cout << "Current : Tool: " << tool << endl; // Debug satement
     Color color = colorSelector->getColor();
 
     if (tool == PENCIL) {
@@ -32,9 +35,25 @@ void Application::onCanvasMouseDown(bobcat::Widget* sender, float mx, float my) 
         canvas->addPolygon(mx, my, color.getR(), color.getG(), color.getB());
         canvas->redraw();
     }
-    // If tool is plus
     else if(tool == PLUS){
-        
+       if (selectedShape) {
+          cout << "Selected shape exists. Scaling now." << endl; //Debug Statement
+          selectedShape->scale(1.1f);
+          cout << "Hitting + button" << endl; //Debug Statement
+          canvas->redraw();
+       }
+    } 
+    else if(tool == MINUS){
+        Shape* shapeUnderCursor = canvas->getSelectedShape(mx,my);
+        if(shapeUnderCursor){
+            selectedShape = shapeUnderCursor;
+            selectedShape->scale(0.9f);
+            cout << "Hitting shape under cursor for -" << endl; //Debug Statement
+            canvas->redraw();
+        }
+        else {
+            cout << "No shape under cursor for -"; //Debug Statement
+        }
     }
    
 
@@ -71,7 +90,7 @@ void Application::onColorSelectorChange(bobcat::Widget* sender) {
     Color color = colorSelector->getColor();
 
     if (selectedShape) {
-        cout << "Update selected shape color" << endl;
+        cout << "Update selected shape color" << endl; //Debug Statement
         selectedShape->setColor(color.getR(), color.getG(), color.getB());
         canvas->redraw();
     }

@@ -32,8 +32,15 @@ void Circle::draw() {
     glEnd();
 }
 
+// Implementation of scale method
+void Circle::scale(float factor){
+    radius *= factor;
+}
 bool Circle::contains(float mx, float my) {
-    return false;
+   float dx = mx - x;
+   float dy = my - y;
+   float distanceSquared = dx * dx + dy * dy;
+   return distanceSquared <= radius*radius;
 }
 
 void Circle::setColor(float r, float g, float b) {

@@ -15,9 +15,11 @@ public:
 
     virtual void setColor(float r, float g, float b) = 0;
 
+    virtual void scale(float factor) = 0; //Defining a function that scales shapes. 
+
     // Since Shape contains at least one pure virtual function
     // Shape is an Abstract Data Type
-
+    
     // This forces every child of Shape to have a draw
     // function implemented
 
