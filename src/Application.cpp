@@ -103,16 +103,16 @@ void Application::onColorSelectorChange(bobcat::Widget* sender) {
 }
 
 Application::Application() {
-    window = new Window(25, 75, 400, 500, "Paint App");
+    window = new Window(25, 75, 400, 600, "Paint App");
 
     selectedShape = nullptr;
 
-    toolbar = new Toolbar(0, 0, 50, 500);
-    canvas = new Canvas(50, 0, 350, 450);
+    toolbar = new Toolbar(0, 0, 50, 600);
+    canvas = new Canvas(50, 0, 350, 550);
     // Defining variables to repersent parameters for ColorSelector
     int height, width, x, y;
     x = 50;
-    y = 450;
+    y = 550;
     width = 350;
     height = 550;
     colorSelector = new ColorSelector(x, y, width, height);

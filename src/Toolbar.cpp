@@ -43,6 +43,12 @@ void Toolbar::visualizeSelectedTool() {
     else if (tool == MINUS) {
         minusButton->color(FL_WHITE);
     }
+    else if (tool == SEND_TO_BACK) {
+        sendtobackButton->color(FL_WHITE);
+    }
+    else if (tool == SEND_TO_FRONT) {
+        sendtofrontButton->color(FL_WHITE);
+    }
 }
 
 void Toolbar::onClick(bobcat::Widget* sender) {
@@ -80,6 +86,12 @@ void Toolbar::onClick(bobcat::Widget* sender) {
     else if (sender == minusButton) {
         tool = MINUS;
     }
+    else if (sender == sendtobackButton) {
+        tool = SEND_TO_BACK;
+    }
+    else if (sender == sendtofrontButton) {
+        tool = SEND_TO_FRONT;
+    }
 
     if (onChangeCb) {
         onChangeCb(this);
@@ -109,7 +121,8 @@ Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
     mouseButton = new Image(x, baseY + 300, 50, 50, "./assets/mouse.png");
     plusButton = new Image(x, baseY + 350, 50, 50, "./assets/plus.png");
     minusButton = new Image(x, baseY + 400, 50, 50, "./assets/minus.png");
-    
+    sendtofrontButton = new Image(x, baseY + 450, 50, 50, "./assets/bring-to-front.png");
+    sendtobackButton = new Image(x, baseY + 500, 50, 50, "./assets/send-to-back.png");
     
 
     tool = PENCIL;
@@ -125,6 +138,9 @@ Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
     mouseButton->box(FL_BORDER_BOX);
     plusButton->box(FL_BORDER_BOX);
     minusButton->box(FL_BORDER_BOX);
+    sendtobackButton->box(FL_BORDER_BOX);
+    sendtofrontButton->box(FL_BORDER_BOX);
+
 
     visualizeSelectedTool();
 
@@ -138,4 +154,6 @@ Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
     ON_CLICK(mouseButton, Toolbar::onClick);
     ON_CLICK(plusButton, Toolbar::onClick);
     ON_CLICK(minusButton, Toolbar::onClick);
+    ON_CLICK(sendtobackButton, Toolbar::onClick);
+    ON_CLICK(sendtofrontButton, Toolbar::onClick);
 }
