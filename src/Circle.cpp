@@ -46,3 +46,16 @@ bool Circle::contains(float mx, float my) {
 void Circle::setColor(float r, float g, float b) {
     //
 }
+
+float Circle::getX() const {
+    return x;
+}
+
+float Circle::getY() const {
+    return y;
+}
+
+void Circle::moveTo(float newX, float newY) {
+    x = newX;
+    y = newY;
+}

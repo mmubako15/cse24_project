@@ -51,3 +51,16 @@ void Polygon::setColor(float r, float g, float b){
     this->g = g;
     this->b = b;
 }
+
+float Polygon::getX() const {
+    return x;
+}
+
+float Polygon::getY() const {
+    return y;
+}
+
+void Polygon::moveTo(float newX, float newY) {
+    x = newX;
+    y = newY;
+}

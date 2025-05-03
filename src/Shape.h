@@ -25,6 +25,12 @@ public:
 
     // Any ADT must have a virtual destructor
     virtual ~Shape(){}
+
+    virtual float getX() const = 0;
+    virtual float getY() const = 0;
+    virtual void moveTo(float newX, float newY) = 0;
+
+    
 };
 
 #endif

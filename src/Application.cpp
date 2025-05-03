@@ -71,6 +71,11 @@ void Application::onCanvasMouseDown(bobcat::Widget* sender, float mx, float my) 
     }
     else if (tool == MOUSE) {
         selectedShape = canvas->getSelectedShape(mx, my);
+        if (selectedShape) {
+        draggingShape = selectedShape;
+        dragOffsetX = mx - selectedShape->getX();
+        dragOffsetY = my - selectedShape->getY();
+    }
     }
 
 }
@@ -87,6 +92,15 @@ void Application::onCanvasDrag(bobcat::Widget* sender, float mx, float my) {
         canvas->addPoint(mx, my, 1.0, 1.0, 1.0, 14);
         canvas->redraw();
     }
+
+    if (draggingShape) {
+        draggingShape->moveTo(mx - dragOffsetX, my - dragOffsetY);
+        canvas->redraw();
+    }
+}
+
+void Application::onCanvasMouseUp(bobcat::Widget* sender, float mx, float my) {
+    draggingShape = nullptr;
 }
 
 void Application::onToolbarChange(bobcat::Widget* sender) {

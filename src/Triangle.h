@@ -14,6 +14,10 @@ bool contains(float mx, float my);
 void setColor(float r, float g, float b);
 void scale(float factor);
 
+    float getX() const override;
+    float getY() const override;
+    void moveTo(float newX, float newY) override;
+
 };
 
 #endif

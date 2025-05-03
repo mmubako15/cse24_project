@@ -48,3 +48,16 @@ void Triangle::setColor(float r, float g, float b){
     this->g = g;
     this->b = b;
 }
+
+float Triangle::getX() const {
+    return x;
+}
+
+float Triangle::getY() const {
+    return y;
+}
+
+void Triangle::moveTo(float newX, float newY) {
+    x = newX;
+    y = newY;
+}

@@ -19,6 +19,10 @@ public:
     void setColor(float r, float g, float b);
     // Instance of scale method. To be implemented 
     void scale(float factor);
+
+    float getX() const override;
+    float getY() const override;
+    void moveTo(float newX, float newY) override;
 };
 
 #endif

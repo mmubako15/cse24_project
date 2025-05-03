@@ -17,6 +17,11 @@ class Application : public bobcat::Application_ {
     void onCanvasDrag(bobcat::Widget* sender, float mx, float my);
     void onToolbarChange(bobcat::Widget* sender);
     void onColorSelectorChange(bobcat::Widget* sender);
+    void onCanvasMouseUp(bobcat::Widget* sender, float mx, float my);
+
+    Shape* draggingShape = nullptr;
+    float dragOffsetX = 0, dragOffsetY = 0;
+
 
 public:
     Application();

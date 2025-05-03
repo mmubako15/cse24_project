@@ -49,3 +49,17 @@ void Rectangle::setColor(float r, float g, float b) {
     this->g = g;
     this->b = b;
 }
+
+float Rectangle::getX() const {
+    return x;
+}
+
+float Rectangle::getY() const {
+    return y;
+}
+
+void Rectangle::moveTo(float newX, float newY) {
+    x = newX;
+    y = newY;
+}
+
