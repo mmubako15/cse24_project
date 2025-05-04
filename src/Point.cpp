@@ -57,3 +57,15 @@ float Point::getB() const {
 int Point::getSize() const {
     return size;
 }
+void Point::setX(float newX) {
+    x = newX;
+}
+void Point::setY(float newY) {
+    y = newY;
+}
+void Point::setColor(float r, float g, float b) {
+    this->r = r;
+    this->g = g;
+    this->b = b;
+}
+

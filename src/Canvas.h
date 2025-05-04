@@ -8,9 +8,11 @@
 #include "Circle.h"
 #include "Shape.h"
 
+
 class Canvas : public bobcat::Canvas_ {
     std::vector<Point*> points;
     std::vector<Shape*> shapes;
+    
 
 public:
     Canvas(int x, int y, int w, int h);
@@ -28,6 +30,12 @@ public:
     void clear();
 
     void render();
+
+    void startScribble(float r, float g, float b, int size);
+
+    void addScribblePoint(float x, float y);
+
+    void endScribble();
 
     // For future reference when passing Shape* the function is expecting a pointer to a shape object not the object itself
     void bringToFront(Shape* shape);

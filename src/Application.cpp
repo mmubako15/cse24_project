@@ -12,8 +12,10 @@ void Application::onCanvasMouseDown(bobcat::Widget* sender, float mx, float my) 
     Color color = colorSelector->getColor();
 
     if (tool == PENCIL) {
-        canvas->addPoint(mx, my, color.getR(), color.getG(), color.getB(), 7);
-        canvas->redraw();
+        // canvas->addPoint(mx, my, color.getR(), color.getG(), color.getB(), 7);     These 2 lines are not needed anymore
+       // canvas->redraw();                                                          because scribble handles it
+        Color c = colorSelector->getColor();
+        canvas->startScribble(c.getR(), c.getG(), c.getB(), 7);
     }
     else if (tool == ERASER) {
         canvas->addPoint(mx, my, 1.0, 1.0, 1.0, 14);
@@ -71,6 +73,7 @@ void Application::onCanvasMouseDown(bobcat::Widget* sender, float mx, float my) 
     }
     else if (tool == MOUSE) {
         selectedShape = canvas->getSelectedShape(mx, my);
+        draggingShape = selectedShape; //updating what new shape to drag 
         if (selectedShape) {
         draggingShape = selectedShape;
         dragOffsetX = mx - selectedShape->getX();
@@ -85,7 +88,7 @@ void Application::onCanvasDrag(bobcat::Widget* sender, float mx, float my) {
     Color color = colorSelector->getColor();
 
     if (tool == PENCIL) {
-        canvas->addPoint(mx, my, color.getR(), color.getG(), color.getB(), 7);
+        canvas->addScribblePoint(mx, my); //creating a scribble along with normal point
         canvas->redraw();
     }
     else if (tool == ERASER) {
@@ -101,6 +104,7 @@ void Application::onCanvasDrag(bobcat::Widget* sender, float mx, float my) {
 
 void Application::onCanvasMouseUp(bobcat::Widget* sender, float mx, float my) {
     draggingShape = nullptr;
+    canvas->endScribble();
 }
 
 void Application::onToolbarChange(bobcat::Widget* sender) {

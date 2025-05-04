@@ -19,10 +19,13 @@ public:
 
     float getX() const;
     float getY() const;
+    void setX(float x);
+    void setY(float y);
     float getR() const;
     float getG() const;
     float getB() const;
     int getSize() const;
+    void setColor(float r, float g, float b);
 };
 
 #endif

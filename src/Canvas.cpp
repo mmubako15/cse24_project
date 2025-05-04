@@ -3,6 +3,8 @@
 #include "Polygon.h"
 #include "Triangle.h"
 #include <GL/freeglut.h>
+#include "Scribble.h"
+
 
 Canvas::Canvas(int x, int y, int w, int h) : Canvas_(x, y, w, h) {
     // 
@@ -102,4 +104,20 @@ Shape* Canvas::getSelectedShape(float mx, float my) {
     }
 
     return selectedShape;
+}
+
+Scribble* currentScribble = nullptr;
+
+void Canvas::startScribble(float r, float g, float b, int size) {
+    currentScribble = new Scribble(r, g, b, size);
+    shapes.push_back(currentScribble);
+}
+
+void Canvas::addScribblePoint(float x, float y) {
+    if (currentScribble)
+        currentScribble->addPoint(x, y);
+}
+
+void Canvas::endScribble() {
+    currentScribble = nullptr;
 }
