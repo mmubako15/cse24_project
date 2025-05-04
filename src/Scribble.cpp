@@ -22,7 +22,7 @@ bool Scribble::contains(float mx, float my) {
     for (auto p : points) {
         float dx = p->getX() - mx;
         float dy = p->getY() - my;
-        if (dx * dx + dy * dy < 25) 
+        if (dx * dx + dy * dy < 16) 
             return true;
     }
     return false;

@@ -7,6 +7,7 @@
 #include "Rectangle.h"
 #include "Circle.h"
 #include "Shape.h"
+#include "Scribble.h"
 
 
 class Canvas : public bobcat::Canvas_ {
@@ -37,11 +38,14 @@ public:
 
     void endScribble();
 
+    void removeShape(Shape* shape);
+
     // For future reference when passing Shape* the function is expecting a pointer to a shape object not the object itself
     void bringToFront(Shape* shape);
     void bringToBack(Shape* shape);
 
     Shape* getSelectedShape(float mx, float my);
+    Scribble* currentScribble = nullptr;
 };
 
 #endif

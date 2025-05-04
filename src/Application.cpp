@@ -18,8 +18,12 @@ void Application::onCanvasMouseDown(bobcat::Widget* sender, float mx, float my) 
         canvas->startScribble(c.getR(), c.getG(), c.getB(), 7);
     }
     else if (tool == ERASER) {
-        canvas->addPoint(mx, my, 1.0, 1.0, 1.0, 14);
+        Shape* shapeUnderCursor = canvas->getSelectedShape(mx, my);
+    if (shapeUnderCursor) {
+        canvas->removeShape(shapeUnderCursor);
+        delete shapeUnderCursor;  
         canvas->redraw();
+    }
     }
     else if (tool == RECTANGLE) {
         canvas->addRectangle(mx, my, color.getR(), color.getG(), color.getB());
@@ -74,7 +78,7 @@ void Application::onCanvasMouseDown(bobcat::Widget* sender, float mx, float my) 
     else if (tool == MOUSE) {
         selectedShape = canvas->getSelectedShape(mx, my);
         draggingShape = selectedShape; //updating what new shape to drag 
-        if (selectedShape) {
+        if (draggingShape) {
         draggingShape = selectedShape;
         dragOffsetX = mx - selectedShape->getX();
         dragOffsetY = my - selectedShape->getY();

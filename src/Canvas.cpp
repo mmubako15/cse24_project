@@ -3,7 +3,9 @@
 #include "Polygon.h"
 #include "Triangle.h"
 #include <GL/freeglut.h>
-#include "Scribble.h"
+#include <algorithm>
+#include <cstddef>
+
 
 
 Canvas::Canvas(int x, int y, int w, int h) : Canvas_(x, y, w, h) {
@@ -75,6 +77,8 @@ void Canvas::clear() {
         delete shapes[i];
     }
     shapes.clear();
+
+    currentScribble = nullptr;
 }
 
 void Canvas::render() {
@@ -88,22 +92,12 @@ void Canvas::render() {
 }
 
 Shape* Canvas::getSelectedShape(float mx, float my) {
-    Shape* selectedShape = nullptr;
-    
-    for (unsigned int i = 0; i < shapes.size(); i++) {
-        // ask every shape if we clicked on it
+    for (int i = shapes.size() - 1; i >= 0; i--) {
         if (shapes[i]->contains(mx, my)) {
-            std::cout << "Clicked on shape[" << i << "]" << std::endl;
-            selectedShape = shapes[i];
-            break;
+            return shapes[i];  
         }
     }
-
-    if (selectedShape == nullptr) {
-        std::cout << "No selected shape" << std::endl;
-    }
-
-    return selectedShape;
+    return nullptr;
 }
 
 Scribble* currentScribble = nullptr;
@@ -120,4 +114,11 @@ void Canvas::addScribblePoint(float x, float y) {
 
 void Canvas::endScribble() {
     currentScribble = nullptr;
+}
+
+void Canvas::removeShape(Shape* shape) {
+   auto it = std::find(shapes.begin(), shapes.end(), shape);
+    if (it != shapes.end()) {
+        shapes.erase(it);
+    }
 }
