@@ -11,14 +11,11 @@
 
 
 class Canvas : public bobcat::Canvas_ {
-    std::vector<Point*> points;
     std::vector<Shape*> shapes;
     
 
 public:
     Canvas(int x, int y, int w, int h);
-
-    void addPoint(float x, float y, float r, float g, float b, int size);
 
     void addRectangle(float x, float y, float r, float g, float b);
 
