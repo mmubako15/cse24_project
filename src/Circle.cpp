@@ -35,6 +35,9 @@ void Circle::draw() {
 // Implementation of scale method
 void Circle::scale(float factor){
     radius *= factor;
+    if (radius < 0.01f) {
+        radius = 0.01f;
+    }
 }
 bool Circle::contains(float mx, float my) {
    float dx = mx - x;
@@ -44,7 +47,9 @@ bool Circle::contains(float mx, float my) {
 }
 
 void Circle::setColor(float r, float g, float b) {
-    //
+    this->r = r;
+    this->g = g;
+    this->b = b;
 }
 
 float Circle::getX() const {

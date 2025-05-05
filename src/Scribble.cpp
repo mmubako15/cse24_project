@@ -19,10 +19,12 @@ void Scribble::draw() {
 
 bool Scribble::contains(float mx, float my) {
     // Considered clicked if near any point in the scribble
+    float threshold = size/ 500.0f;
+    float thresholdSq = threshold * threshold;
     for (auto p : points) {
         float dx = p->getX() - mx;
         float dy = p->getY() - my;
-        if (dx * dx + dy * dy < 16) 
+        if (dx * dx + dy * dy < thresholdSq) 
             return true;
     }
     return false;

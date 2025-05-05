@@ -50,17 +50,13 @@ void Application::onCanvasMouseDown(bobcat::Widget* sender, float mx, float my) 
        }
     } 
     else if(tool == MINUS){
-        Shape* shapeUnderCursor = canvas->getSelectedShape(mx,my);
-        if(shapeUnderCursor){
-            selectedShape = shapeUnderCursor;
+        if(selectedShape){
             selectedShape->scale(0.9f);
-            cout << "Hitting shape under cursor for -" << endl; //Debug Statement
             canvas->redraw();
         }
-        else {
-            cout << "No shape under cursor for -"; //Debug Statement
+        else{
+            cout << "No shape selected for -" <<endl;
         }
-
     }
     else if (tool == SEND_TO_FRONT){
         if(selectedShape){
@@ -111,12 +107,19 @@ void Application::onCanvasMouseUp(bobcat::Widget* sender, float mx, float my) {
 }
 
 void Application::onToolbarChange(bobcat::Widget* sender) {
-    ACTION action = toolbar->getAction();
+   static TOOL previousTool = MOUSE;
+   TOOL currentTool = toolbar->getTool();
 
-    if (action == CLEAR) {
-        canvas->clear();
-        canvas->redraw();
-    }
+   if(currentTool != previousTool){
+    onToolChanged(currentTool);
+    previousTool = currentTool;
+   }
+   ACTION action = toolbar->getAction();
+
+   if(action == CLEAR){
+    canvas->clear();
+    canvas->redraw();
+   }
 }
 
 void Application::onColorSelectorChange(bobcat::Widget* sender) {
@@ -133,6 +136,24 @@ void Application::onColorSelectorChange(bobcat::Widget* sender) {
     if + plus is hit then increase shapes size by 10%
     */
 
+}
+
+void Application::onToolChanged(TOOL newTool){
+    // Currently is interfering with the + button - button and bring to back/front
+    // On any tool that is not those listed above we change selectedShape and draggingShape to nullptr
+     if(newTool == PENCIL ||
+        newTool == RECTANGLE ||
+        newTool == CIRCLE ||
+        newTool == TRIANGLE ||
+        newTool == POLYGON ||
+        newTool == ERASER){
+
+            selectedShape = nullptr;
+            draggingShape = nullptr;
+        }
+        
+    
+    
 }
 
 Application::Application() {

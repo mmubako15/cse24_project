@@ -88,20 +88,20 @@ Shape* Canvas::getSelectedShape(float mx, float my) {
     return nullptr;
 }
 
-Scribble* currentScribble = nullptr;
+
 
 void Canvas::startScribble(float r, float g, float b, int size) {
-    currentScribble = new Scribble(r, g, b, size);
+    this->currentScribble = new Scribble(r, g, b, size);
     shapes.push_back(currentScribble);
 }
 
 void Canvas::addScribblePoint(float x, float y) {
-    if (currentScribble)
-        currentScribble->addPoint(x, y);
+    if (this->currentScribble)
+        this->currentScribble->addPoint(x, y);
 }
 
 void Canvas::endScribble() {
-    currentScribble = nullptr;
+    this->currentScribble = nullptr;
 }
 
 void Canvas::removeShape(Shape* shape) {

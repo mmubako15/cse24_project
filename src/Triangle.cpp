@@ -35,7 +35,12 @@ void Triangle::draw(){
 
 void Triangle::scale(float factor){
     size *= factor;
+
+    if (size < 0.01f){
+        size = 0.01f;
+    }
 }
+
 
 bool Triangle::contains(float mx, float my){
     float dx = mx - x;

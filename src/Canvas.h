@@ -12,6 +12,7 @@
 
 class Canvas : public bobcat::Canvas_ {
     std::vector<Shape*> shapes;
+    Scribble* currentScribble = nullptr;
     
 
 public:
@@ -42,7 +43,7 @@ public:
     void bringToBack(Shape* shape);
 
     Shape* getSelectedShape(float mx, float my);
-    Scribble* currentScribble = nullptr;
+    
 };
 
 #endif

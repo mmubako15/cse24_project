@@ -37,6 +37,9 @@ void Polygon::draw(){
 
 void Polygon::scale(float factor){
     size *= factor;
+    if (size < 0.01f){
+        size = 0.01f;
+    }
 }
 
 bool Polygon::contains(float mx, float my){

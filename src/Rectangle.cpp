@@ -35,6 +35,12 @@ void Rectangle::draw() {
 void Rectangle::scale(float factor){
     width *= factor;
     height *= factor;
+    if(width < 0.01f){
+        width =  0.01f;
+    }
+    if(height < 0.01f){
+        height = 0.01f;
+    }
 }
 
 bool Rectangle::contains(float mx, float my) {
